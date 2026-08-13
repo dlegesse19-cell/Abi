@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Follow Up | Soulasia International Ltd.</title>
+
+<style>
+  :root{
+    --navy:#0B2540;
+    --navy-deep:#081b30;
+    --teal:#123C3E;
+    --gold:#F2B705;
+    --gold-light:#F7D046;
+    --sand:#F3EEE4;
+    --sand-2:#EAE2D2;
+    --ink:#20221F;
+    --ink-soft:#4A4C46;
+    --line:rgba(242,183,5,0.35);
+    --white:#FBFAF7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color:var(--ink);
+    background:var(--sand);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--navy);
+  }
+  a{color:inherit; text-decoration:none;}
+  .eyebrow{
+    font-family:'Courier New', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy);
+    border-bottom:1px solid rgba(247,208,70,0.25);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-weight:600;
+    font-size:1.25rem;
+    color:var(--white);
+    letter-spacing:0.02em;
+  }
+  .logo span{color:var(--gold-light);}
+  .navlinks{display:flex; gap:34px; font-size:0.92rem;}
+  .navlinks a{color:#CBD3D8; transition:color .2s;}
+  .navlinks a:hover{color:var(--gold-light);}
+  .navlinks a.active{color:var(--white);}
+  .nav-cta{
+    background:var(--gold);
+    color:var(--navy-deep);
+    font-weight:600;
+    font-size:0.85rem;
+    padding:10px 20px;
+    border-radius:2px;
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--gold-light);}
+  .navlinks, .nav-cta{white-space:nowrap;}
+  @media (max-width:860px){ .navlinks{display:none;} }
+
+  .page-header{
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--white);
+    padding:60px 0 70px;
+  }
+  .page-header h1{
+    font-size:clamp(1.8rem, 3.5vw, 2.8rem);
+    color:var(--white);
+    margin-top:12px;
+  }
+  .page-header p{
+    color:#C7CFD4;
+    font-size:1.05rem;
+    max-width:560px;
+    margin-top:10px;
+  }
+
+  .login-section{
+    padding:60px 0 80px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:60vh;
+  }
+  .login-box{
+    background:var(--white);
+    padding:50px 44px;
+    border-radius:6px;
+    border:1px solid var(--line);
+    max-width:420px;
+    width:100%;
+    box-shadow:0 8px 40px rgba(0,0,0,0.06);
+  }
+  .login-box h2{
+    font-size:1.4rem;
+    margin-bottom:6px;
+    text-align:center;
+  }
+  .login-box .sub{
+    color:var(--ink-soft);
+    font-size:0.9rem;
+    text-align:center;
+    margin-bottom:28px;
+  }
+  .login-box .form-group{
+    margin-bottom:18px;
+  }
+  .login-box .form-group label{
+    display:block;
+    font-weight:600;
+    font-size:0.82rem;
+    margin-bottom:4px;
+    color:var(--navy);
+  }
+  .login-box .form-group input{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid #D4CEC4;
+    border-radius:2px;
+    font-size:0.95rem;
+    font-family:inherit;
+    background:var(--white);
+    transition:border .2s;
+  }
+  .login-box .form-group input:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .btn-login{
+    background:var(--gold);
+    color:var(--navy-deep);
+    font-weight:600;
+    font-size:1rem;
+    padding:14px 34px;
+    border:none;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background .2s;
+    width:100%;
+    margin-top:6px;
+  }
+  .btn-login:hover{background:var(--gold-light);}
+  .btn-login:disabled{opacity:0.6; cursor:default;}
+  .login-error{
+    color:#c0392b;
+    font-size:0.85rem;
+    text-align:center;
+    margin-top:12px;
+    display:none;
+  }
+
+  .admin-panel{
+    margin-top:24px;
+    padding-top:20px;
+    border-top:1px solid #EAE2D2;
+    display:none;
+  }
+  .admin-panel.visible{display:block;}
+  .admin-panel h4{
+    font-size:0.95rem;
+    margin-bottom:12px;
+    color:var(--navy);
+    text-align:center;
+  }
+  .admin-panel .form-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .admin-panel .form-row input{
+    flex:1;
+    min-width:100px;
+    padding:10px 12px;
+    border:1px solid #D4CEC4;
+    border-radius:2px;
+    font-size:0.85rem;
+    font-family:inherit;
+  }
+  .admin-panel .form-row input:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .btn-admin{
+    background:var(--teal);
+    color:var(--white);
+    font-weight:600;
+    font-size:0.82rem;
+    padding:10px 20px;
+    border:none;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background .2s;
+  }
+  .btn-admin:hover{background:var(--navy);}
+  .admin-message{
+    font-size:0.8rem;
+    margin-top:10px;
+    text-align:center;
+    color:var(--ink-soft);
+  }
+
+  .password-panel{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:22px 26px;
+    margin-bottom:24px;
+    display:none;
+  }
+  .password-panel.visible{display:block;}
+  .password-panel h4{
+    font-size:1rem;
+    margin-bottom:14px;
+    color:var(--navy);
+  }
+  .password-panel .form-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .password-panel .form-row input{
+    flex:1;
+    min-width:160px;
+    padding:10px 12px;
+    border:1px solid #D4CEC4;
+    border-radius:2px;
+    font-size:0.85rem;
+    font-family:inherit;
+  }
+  .password-panel .form-row input:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .password-panel .admin-message{text-align:left;}
+
+  .dashboard{
+    display:none;
+    padding:40px 0 60px;
+  }
+  .dashboard.active{display:block;}
+  .dashboard h2{
+    font-size:1.5rem;
+    margin-bottom:6px;
+  }
+  .dashboard .sub{
+    color:var(--ink-soft);
+    font-size:0.95rem;
+    margin-bottom:30px;
+  }
+
+  .dash-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:40px;
+  }
+  .dash-btn{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:20px 12px;
+    text-align:center;
+    cursor:pointer;
+    transition:transform .2s, box-shadow .2s, border .2s;
+    font-family:inherit;
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--navy);
+  }
+  .dash-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+    border-color:var(--gold);
+  }
+  .dash-btn .icon{
+    font-size:1.6rem;
+    display:block;
+    margin-bottom:6px;
+  }
+  .dash-btn.active{
+    border-color:var(--gold);
+    background:rgba(242,183,5,0.06);
+  }
+  @media (max-width:860px){
+    .dash-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  @media (max-width:540px){
+    .dash-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  .file-section{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:30px 34px;
+    display:none;
+  }
+  .file-section.active{display:block;}
+  .file-section h3{
+    font-size:1.15rem;
+    margin-bottom:4px;
+  }
+  .file-section .sub{
+    color:var(--ink-soft);
+    font-size:0.9rem;
+    margin-bottom:18px;
+  }
+  .file-upload-area{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-bottom:20px;
+    padding-bottom:20px;
+    border-bottom:1px solid #EAE2D2;
+  }
+  .file-upload-area input[type="file"]{
+    flex:1;
+    min-width:200px;
+    padding:10px 12px;
+    border:1px dashed #D4CEC4;
+    border-radius:2px;
+    font-size:0.85rem;
+    background:var(--sand);
+  }
+  .file-upload-area input[type="file"]:hover{
+    border-color:var(--gold);
+  }
+  .btn-upload{
+    background:var(--teal);
+    color:var(--white);
+    font-weight:600;
+    font-size:0.85rem;
+    padding:11px 28px;
+    border:none;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background .2s;
+  }
+  .btn-upload:hover{background:var(--navy);}
+  .btn-upload:disabled{opacity:0.6; cursor:default;}
+  .file-list{
+    list-style:none;
+  }
+  .file-list li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid #EAE2D2;
+    font-size:0.9rem;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .file-list li:last-child{border-bottom:none;}
+  .file-list .file-name{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .file-list .file-name .icon{
+    font-size:1.2rem;
+  }
+  .file-list .file-size{
+    color:var(--ink-soft);
+    font-size:0.78rem;
+  }
+  .file-list .file-actions{
+    display:flex;
+    gap:10px;
+  }
+  .file-list .file-actions a{
+    color:var(--navy);
+    font-size:0.82rem;
+    text-decoration:underline;
+    transition:color .2s;
+  }
+  .file-list .file-actions a:hover{color:var(--gold);}
+  .file-list .file-actions .delete{
+    color:#c0392b;
+    cursor:pointer;
+    text-decoration:underline;
+    font-size:0.82rem;
+    background:none;
+    border:none;
+  }
+  .file-list .file-actions .delete:hover{color:#e74c3c;}
+  .empty-files{
+    color:var(--ink-soft);
+    font-size:0.9rem;
+    text-align:center;
+    padding:20px 0;
+  }
+
+  .client-view .file-upload-area{display:none;}
+  .client-view .file-actions .delete{display:none;}
+
+  .admin-view .file-upload-area{display:flex;}
+  .admin-view .file-actions .delete{display:inline-block;}
+
+  .logout-area{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .logout-area .client-info{
+    font-size:0.9rem;
+    color:var(--ink-soft);
+  }
+  .logout-area .client-info strong{
+    color:var(--navy);
+  }
+  .logout-area .role-badge{
+    font-size:0.7rem;
+    background:var(--gold);
+    color:var(--navy-deep);
+    padding:2px 12px;
+    border-radius:12px;
+    font-weight:600;
+    margin-left:8px;
+  }
+  .logout-area .role-badge.admin{
+    background:var(--teal);
+    color:var(--white);
+  }
+  .logout-area .actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .btn-logout{
+    background:transparent;
+    color:var(--ink-soft);
+    border:1px solid #D4CEC4;
+    padding:8px 20px;
+    border-radius:2px;
+    cursor:pointer;
+    font-size:0.82rem;
+    transition:background .2s, color .2s;
+  }
+  .btn-logout:hover{
+    background:var(--navy);
+    color:var(--white);
+    border-color:var(--navy);
+  }
+
+  .admin-client-switcher{
+    background:var(--sand-2);
+    padding:16px 20px;
+    border-radius:4px;
+    margin-bottom:24px;
+    display:none;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .admin-client-switcher.visible{display:flex;}
+  .admin-client-switcher label{
+    font-weight:600;
+    font-size:0.9rem;
+    color:var(--navy);
+  }
+  .admin-client-switcher select{
+    padding:8px 14px;
+    border:1px solid #D4CEC4;
+    border-radius:2px;
+    font-size:0.9rem;
+    background:var(--white);
+    flex:1;
+    min-width:150px;
+  }
+  .admin-client-switcher select:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .admin-client-switcher .btn-switch{
+    background:var(--gold);
+    color:var(--navy-deep);
+    font-weight:600;
+    padding:8px 20px;
+    border:none;
+    border-radius:2px;
+    cursor:pointer;
+    font-size:0.85rem;
+    transition:background .2s;
+  }
+  .admin-client-switcher .btn-switch:hover{background:var(--gold-light);}
+
+  .client-info-display{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .client-info-display .info-item{
+    display:flex;
+    flex-direction:column;
+  }
+  .client-info-display .info-item .label{
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    opacity:0.6;
+  }
+  .client-info-display .info-item .value{
+    font-weight:600;
+    font-size:0.95rem;
+    color:var(--navy);
+    margin-top:2px;
+  }
+  @media (max-width:760px){
+    .client-info-display{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:480px){
+    .client-info-display{grid-template-columns:1fr;}
+  }
+
+  .chat-section{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:30px 34px;
+    margin-top:30px;
+  }
+  .chat-section h3{
+    font-size:1.15rem;
+    margin-bottom:4px;
+  }
+  .chat-section .sub{
+    color:var(--ink-soft);
+    font-size:0.9rem;
+    margin-bottom:18px;
+  }
+  .chat-messages{
+    max-height:200px;
+    overflow-y:auto;
+    margin-bottom:16px;
+    padding:10px 0;
+    border-top:1px solid #EAE2D2;
+    border-bottom:1px solid #EAE2D2;
+  }
+  .chat-messages .message{
+    padding:8px 14px;
+    margin-bottom:8px;
+    border-radius:4px;
+    max-width:80%;
+  }
+  .chat-messages .message.client{
+    background:var(--sand-2);
+    margin-right:auto;
+  }
+  .chat-messages .message.admin{
+    background:var(--gold);
+    color:var(--navy-deep);
+    margin-left:auto;
+  }
+  .chat-messages .message .sender{
+    font-size:0.7rem;
+    font-weight:600;
+    opacity:0.6;
+    display:block;
+    margin-bottom:2px;
+  }
+  .chat-messages .message .time{
+    font-size:0.65rem;
+    opacity:0.5;
+    margin-left:10px;
+  }
+  .chat-input-area{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .chat-input-area input{
+    flex:1;
+    padding:12px 16px;
+    border:1px solid #D4CEC4;
+    border-radius:2px;
+    font-size:0.9rem;
+    font-family:inherit;
+    min-width:200px;
+  }
+  .chat-input-area input:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .btn-chat-send{
+    background:var(--gold);
+    color:var(--navy-deep);
+    font-weight:600;
+    font-size:0.85rem;
+    padding:12px 28px;
+    border:none;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background .2s;
+  }
+  .btn-chat-send:hover{background:var(--gold-light);}
+
+  footer{background:var(--navy-deep); color:#9FAAB0; padding:56px 0 30px;}
+  .foot-grid{
+    display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px;
+    padding-bottom:34px; border-bottom:1px solid rgba(247,208,70,0.18);
+  }
+  .foot-grid h4{
+    font-family:Georgia, 'Times New Roman', serif; color:var(--white); font-size:1.05rem; margin-bottom:14px; font-weight:600;
+  }
+  .foot-grid p, .foot-grid a{font-size:0.88rem; line-height:1.9; color:#9FAAB0; display:block;}
+  .foot-grid a:hover{color:var(--gold-light);}
+  .copyright{padding-top:22px; font-size:0.8rem; color:#728089; text-align:center;}
+  @media (max-width:760px){ .foot-grid{grid-template-columns:1fr;} }
+
+  .fade-in{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .fade-in.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .whatsapp-float{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    background:#25D366;
+    color:white;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 6px 20px rgba(37,211,102,0.4);
+    transition:transform .3s ease, box-shadow .3s ease;
+    z-index:100;
+  }
+  .whatsapp-float:hover{
+    transform:scale(1.1);
+    box-shadow:0 8px 30px rgba(37,211,102,0.5);
+  }
+  .whatsapp-float svg{
+    width:32px;
+    height:32px;
+  }
+  @media (max-width:640px){
+    .whatsapp-float{
+      width:52px;
+      height:52px;
+      bottom:16px;
+      right:16px;
+    }
+    .whatsapp-float svg{
+      width:26px;
+      height:26px;
+    }
+  }
+
+  .conn-banner{
+    display:none;
+    background:#c0392b;
+    color:#fff;
+    text-align:center;
+    font-size:0.85rem;
+    padding:10px 16px;
+  }
+  .conn-banner.visible{display:block;}
+</style>
+</head>
+<body>
+
+<div class="conn-banner" id="connBanner">Firebase is not configured yet — edit firebaseConfig in the code before this will work.</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">SOULASIA <span>INTERNATIONAL</span></div>
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="followup.html" class="active">Follow Up</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="index.html#contact" class="nav-cta">Get a Quote</a>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="wrap">
+    <span class="eyebrow">Client Portal</span>
+    <h1>Follow Up on Your Projects</h1>
+    <p>Login to track your orders, inspections, loading, shipments, and access important documents.</p>
+  </div>
+</section>
+
+<section class="login-section" id="loginSection">
+  <div class="wrap" style="display:flex; justify-content:center;">
+    <div class="login-box fade-in">
+      <h2>Client Login</h2>
+      <p class="sub">Enter your credentials to access your project dashboard</p>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password">
+      </div>
+      <button class="btn-login" id="loginBtn" onclick="handleLogin()">Login →</button>
+      <div class="login-error" id="loginError">Invalid username or password. Please try again.</div>
+    </div>
+  </div>
+</section>
+
+<section class="dashboard" id="dashboard">
+  <div class="wrap">
+    <div class="logout-area">
+      <span class="client-info">
+        Logged in as: <strong id="displayUsername">Client</strong>
+        <span class="role-badge" id="roleBadge">Client</span>
+      </span>
+      <div class="actions">
+        <button class="btn-logout" id="createAccountBtn" style="display:none;" onclick="toggleCreateAccount()">Create Client Account</button>
+        <button class="btn-logout" onclick="toggleChangePassword()">Change Password</button>
+        <button class="btn-logout" onclick="handleLogout()">Logout</button>
+      </div>
+    </div>
+
+    <div class="password-panel" id="createAccountPanel">
+      <h4>🔑 Create Client Account</h4>
+      <div class="form-row">
+        <input type="text" id="newUsername" placeholder="New Username">
+        <input type="password" id="newPassword" placeholder="New Password">
+        <button class="btn-admin" onclick="createAccount()">Create Account</button>
+      </div>
+      <div class="admin-message" id="adminMessage"></div>
+    </div>
+
+    <div class="password-panel" id="changePasswordPanel">
+      <h4>🔒 Change Password</h4>
+      <div class="form-row">
+        <input type="password" id="cpOldPassword" placeholder="Current Password">
+        <input type="password" id="cpNewPassword" placeholder="New Password">
+        <input type="password" id="cpConfirmPassword" placeholder="Confirm New Password">
+        <button class="btn-admin" onclick="changePassword()">Update Password</button>
+      </div>
+      <div class="admin-message" id="cpMessage"></div>
+    </div>
+
+    <div class="admin-client-switcher" id="adminSwitcher">
+      <label for="clientSelect">Switch to Client:</label>
+      <select id="clientSelect">
+        <option value="">Select a client...</option>
+      </select>
+      <button class="btn-switch" onclick="switchToClient()">View Client Files</button>
+      <button class="btn-switch" onclick="switchBackToAdmin()" style="background:var(--sand-2); color:var(--ink);">Back to Admin</button>
+    </div>
+
+    <h2>Welcome, <span id="displayUsername2">Client</span>!</h2>
+    <p class="sub" id="dashboardSub">Select a section below to view your project files.</p>
+
+    <div class="dash-grid">
+      <button class="dash-btn" onclick="openSection('client_info')">
+        <span class="icon">👤</span>
+        Client Information
+      </button>
+      <button class="dash-btn" onclick="openSection('pi_permit')">
+        <span class="icon">📑</span>
+        PI &amp; Permit
+      </button>
+      <button class="dash-btn" onclick="openSection('follow_up')">
+        <span class="icon">📋</span>
+        Follow Up
+      </button>
+      <button class="dash-btn" onclick="openSection('inspection')">
+        <span class="icon">🔍</span>
+        Inspection
+      </button>
+      <button class="dash-btn" onclick="openSection('loading')">
+        <span class="icon">🚛</span>
+        Loading
+      </button>
+      <button class="dash-btn" onclick="openSection('shipment')">
+        <span class="icon">🚢</span>
+        Shipment
+      </button>
+      <button class="dash-btn" onclick="openSection('documents')">
+        <span class="icon">📄</span>
+        Documents
+      </button>
+    </div>
+
+    <div class="file-section" id="client_infoSection">
+      <h3>👤 Client Information</h3>
+      <p class="sub">View your company and project details.</p>
+      <div class="client-info-display">
+        <div class="info-item">
+          <span class="label">Client Name</span>
+          <span class="value" id="infoName">—</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Company</span>
+          <span class="value" id="infoCompany">—</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email</span>
+          <span class="value" id="infoEmail">—</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Project</span>
+          <span class="value" id="infoProject">—</span>
+        </div>
+      </div>
+      <div class="file-upload-area" id="clientInfoEdit" style="margin-top:20px; border-top:1px solid #EAE2D2; padding-top:20px;">
+        <input type="text" id="editName" placeholder="Full Name" style="flex:1; min-width:150px; padding:10px 12px; border:1px solid #D4CEC4; border-radius:2px; font-size:0.85rem;">
+        <input type="text" id="editCompany" placeholder="Company" style="flex:1; min-width:150px; padding:10px 12px; border:1px solid #D4CEC4; border-radius:2px; font-size:0.85rem;">
+        <input type="email" id="editEmail" placeholder="Email" style="flex:1; min-width:150px; padding:10px 12px; border:1px solid #D4CEC4; border-radius:2px; font-size:0.85rem;">
+        <input type="text" id="editProject" placeholder="Project" style="flex:1; min-width:150px; padding:10px 12px; border:1px solid #D4CEC4; border-radius:2px; font-size:0.85rem;">
+        <button class="btn-upload" onclick="updateClientInfo()">Update Info</button>
+      </div>
+
+      <div class="file-upload-area" style="margin-top:20px;">
+        <input type="file" id="client_infoFileInput" multiple>
+        <button class="btn-upload" onclick="uploadFile('client_info')">Upload Files</button>
+      </div>
+      <ul class="file-list" id="client_infoFileList">
+        <li class="empty-files">No files uploaded yet.</li>
+      </ul>
+    </div>
+
+    <div class="file-section" id="pi_permitSection">
+      <h3>📑 PI &amp; Permit</h3>
+      <p class="sub">Upload and view PI and Permit documents.</p>
+      <div class="file-upload-area">
+        <input type="file" id="pi_permitFileInput" multiple>
+        <button class="btn-upload" onclick="uploadFile('pi_permit')">Upload Files</button>
+      </div>
+      <ul class="file-list" id="pi_permitFileList">
+        <li class="empty-files">No files uploaded yet.</li>
+      </ul>
+    </div>
+
+    <div class="file-section" id="follow_upSection">
+      <h3>📋 Follow Up</h3>
+      <p class="sub">Upload and view follow-up notes and files.</p>
+      <div class="file-upload-area">
+        <input type="file" id="follow_upFileInput" multiple>
+        <button class="btn-upload" onclick="uploadFile('follow_up')">Upload Files</button>
+      </div>
+      <ul class="file-list" id="follow_upFileList">
+        <li class="empty-files">No files uploaded yet.</li>
+      </ul>
+    </div>
+
+    <div class="file-section" id="inspectionSection">
+      <h3>🔍 Inspection</h3>
+      <p class="sub">Upload and view inspection reports and files.</p>
+      <div class="file-upload-area">
+        <input type="file" id="inspectionFileInput" multiple>
+        <button class="btn-upload" onclick="uploadFile('inspection')">Upload Files</button>
+      </div>
+      <ul class="file-list" id="inspectionFileList">
+        <li class="empty-files">No files uploaded yet.</li>
+      </ul>
+    </div>
+
+    <div class="file-section" id="loadingSection">
+      <h3>🚛 Loading</h3>
+      <p class="sub">Upload and view loading-related files.</p>
+      <div class="file-upload-area">
+        <input type="file" id="loadingFileInput" multiple>
+        <button class="btn-upload" onclick="uploadFile('loading')">Upload Files</button>
+      </div>
+      <ul class="file-list" id="loadingFileList">
+        <li class="empty-files">No files uploaded yet.</li>
+      </ul>
+    </div>
+
+    <div class="file-section" id="shipmentSection">
+      <h3>🚢 Shipment</h3>
+      <p class="sub">Upload and view shipment-related files.</p>
+      <div class="file-upload-area">
+        <input type="file" id="shipmentFileInput" multiple>
+        <button class="btn-upload" onclick="uploadFile('shipment')">Upload Files</button>
+      </div>
+      <ul class="file-list" id="shipmentFileList">
+        <li class="empty-files">No files uploaded yet.</li>
+      </ul>
+    </div>
+
+    <div class="file-section" id="documentsSection">
+      <h3>📄 Documents</h3>
+      <p class="sub">Upload and view important project documents.</p>
+      <div class="file-upload-area">
+        <input type="file" id="documentsFileInput" multiple>
+        <button class="btn-upload" onclick="uploadFile('documents')">Upload Files</button>
+      </div>
+      <ul class="file-list" id="documentsFileList">
+        <li class="empty-files">No files uploaded yet.</li>
+      </ul>
+    </div>
+
+    <div class="chat-section" id="chatSection">
+      <h3>💬 Chat with Admin</h3>
+      <p class="sub">Send a message to the admin about your project. Messages update live.</p>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message admin">
+          <span class="sender">Admin</span>
+          Welcome! How can I help you today?
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type your message..." onkeydown="if(event.key==='Enter') sendMessage()">
+        <button class="btn-chat-send" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>SOULASIA INTERNATIONAL LTD.</h4>
+        <p>Hong Kong Base | Offices in Guangzhou, Addis Ababa &amp; UAE</p>
+        <p style="margin-top:8px;">© 2026 Soulasia International Ltd. All Rights Reserved.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="followup.html">Follow Up</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:Soulasia251@gmail.com">Soulasia251@gmail.com</a>
+        <a href="tel:+251911500019">📞 +251 91 150 0019</a>
+        <span>📍 Addis Ababa, Ethiopia | Guangzhou, China | UAE</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/251911500019" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, collection, doc, getDoc, getDocs, setDoc, updateDoc,
+    addDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  // Files are stored directly inside Firestore documents (base64) so no
+  // paid Firebase Storage / Blaze plan is required. Max ~700KB per file.
+
+  // =====================================================================
+  // 1) PASTE YOUR FIREBASE CONFIG HERE (from Firebase Console > Project
+  //    Settings > General > Your apps > SDK setup and configuration)
+  // =====================================================================
+  const firebaseConfig = {
+    apiKey: "AIzaSyB4E5b8LcC7JTdZEZJyrHGCb106sLsGHJI",
+    authDomain: "soulasia-portal.firebaseapp.com",
+    projectId: "soulasia-portal",
+    storageBucket: "soulasia-portal.firebasestorage.app",
+    messagingSenderId: "43726840287",
+    appId: "1:43726840287:web:4760837ff0db700b16e46a"
+  };
+
+  const CONFIGURED = firebaseConfig.apiKey !== "YOUR_API_KEY";
+  if (!CONFIGURED) {
+    document.getElementById('connBanner').classList.add('visible');
+  }
+
+  const app = CONFIGURED ? initializeApp(firebaseConfig) : null;
+  const db = CONFIGURED ? getFirestore(app) : null;
+  const MAX_FILE_BYTES = 700000; // ~700KB, stays safely under Firestore's 1MB document cap once base64-encoded
+
+  const FILE_SECTIONS = ['client_info', 'pi_permit', 'follow_up', 'inspection', 'loading', 'shipment', 'documents'];
+
+  function emptyFileBucket() {
+    const bucket = {};
+    FILE_SECTIONS.forEach(s => { bucket[s] = []; });
+    return bucket;
+  }
+
+  let currentUser = null;
+  let currentRole = null;
+  let viewingClient = null;
+  let filesUnsub = null;
+  let chatUnsub = null;
+  let allClientFiles = emptyFileBucket();
+  let filesById = {};
+
+  async function ensureSeedAccounts() {
+    if (!CONFIGURED) return;
+    const adminSnap = await getDoc(doc(db, 'clients', 'admin'));
+    if (!adminSnap.exists()) {
+      await setDoc(doc(db, 'clients', 'admin'), { password: 'admin123', role: 'admin' });
+    }
+    const demoSnap = await getDoc(doc(db, 'clients', 'demo'));
+    if (!demoSnap.exists()) {
+      await setDoc(doc(db, 'clients', 'demo'), { password: 'demo123', role: 'client' });
+      await setDoc(doc(db, 'clientData', 'demo'), { name: 'demo', company: '', email: '', project: '' });
+      await addDoc(collection(db, 'clientChats', 'demo', 'messages'), {
+        sender: 'admin', message: 'Welcome! How can I help you today?',
+        time: new Date().toLocaleTimeString(), timestamp: serverTimestamp()
+      });
+    }
+  }
+
+  // ===== ADMIN: CREATE ACCOUNT =====
+
+  window.createAccount = async function () {
+    const username = document.getElementById('newUsername').value.trim();
+    const password = document.getElementById('newPassword').value.trim();
+    const msgEl = document.getElementById('adminMessage');
+
+    if (!CONFIGURED) { msgEl.textContent = 'Firebase is not configured yet.'; msgEl.style.color = '#c0392b'; return; }
+    if (!username || !password) { msgEl.textContent = 'Please enter both username and password.'; msgEl.style.color = '#c0392b'; return; }
+    if (username.length < 3) { msgEl.textContent = 'Username must be at least 3 characters.'; msgEl.style.color = '#c0392b'; return; }
+    if (password.length < 4) { msgEl.textContent = 'Password must be at least 4 characters.'; msgEl.style.color = '#c0392b'; return; }
+
+    try {
+      const existing = await getDoc(doc(db, 'clients', username));
+      if (existing.exists()) { msgEl.textContent = `Username "${username}" already exists.`; msgEl.style.color = '#c0392b'; return; }
+
+      await setDoc(doc(db, 'clients', username), { password, role: 'client' });
+      await setDoc(doc(db, 'clientData', username), { name: username, company: '', email: '', project: '' });
+      await addDoc(collection(db, 'clientChats', username, 'messages'), {
+        sender: 'admin', message: 'Welcome! How can I help you today?',
+        time: new Date().toLocaleTimeString(), timestamp: serverTimestamp()
+      });
+
+      msgEl.textContent = `Account "${username}" created successfully!`;
+      msgEl.style.color = '#27ae60';
+      document.getElementById('newUsername').value = '';
+      document.getElementById('newPassword').value = '';
+    } catch (err) {
+      console.error(err);
+      msgEl.textContent = 'Something went wrong. Check the console for details.';
+      msgEl.style.color = '#c0392b';
+    }
+  };
+
+  // ===== LOGIN =====
+
+  window.handleLogin = async function () {
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const errorEl = document.getElementById('loginError');
+    const btn = document.getElementById('loginBtn');
+
+    if (!CONFIGURED) { errorEl.textContent = 'Firebase is not configured yet.'; errorEl.style.display = 'block'; return; }
+    if (!username || !password) { errorEl.textContent = 'Please enter both username and password.'; errorEl.style.display = 'block'; return; }
+
+    btn.disabled = true;
+    try {
+      const snap = await getDoc(doc(db, 'clients', username));
+      if (snap.exists() && snap.data().password === password) {
+        errorEl.style.display = 'none';
+        currentUser = username;
+        currentRole = snap.data().role || 'client';
+        viewingClient = null;
+        sessionStorage.setItem('soulasia_current_user', username);
+        sessionStorage.setItem('soulasia_current_role', currentRole);
+        await showDashboard(username, currentRole);
+      } else {
+        errorEl.textContent = 'Invalid username or password. Please try again.';
+        errorEl.style.display = 'block';
+      }
+    } catch (err) {
+      console.error(err);
+      errorEl.textContent = 'Connection error — check your Firebase setup.';
+      errorEl.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+    }
+  };
+
+  async function showDashboard(username, role) {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('dashboard').classList.add('active');
+    document.getElementById('displayUsername').textContent = username.charAt(0).toUpperCase() + username.slice(1);
+    document.getElementById('displayUsername2').textContent = username.charAt(0).toUpperCase() + username.slice(1);
+
+    const infoSnap = await getDoc(doc(db, 'clientData', username));
+    const info = infoSnap.exists() ? infoSnap.data() : { name: '', company: '', email: '', project: '' };
+    setInfoDisplay(info);
+
+    const badge = document.getElementById('roleBadge');
+    if (role === 'admin') {
+      badge.textContent = 'Admin';
+      badge.className = 'role-badge admin';
+      document.getElementById('dashboardSub').textContent = 'You have full access to manage all client files.';
+      document.getElementById('adminSwitcher').classList.add('visible');
+      document.getElementById('createAccountBtn').style.display = 'inline-block';
+      await populateClientSelect();
+      document.getElementById('clientInfoEdit').style.display = 'flex';
+    } else {
+      badge.textContent = 'Client';
+      badge.className = 'role-badge';
+      document.getElementById('dashboardSub').textContent = 'Select a section below to view your project files.';
+      document.getElementById('adminSwitcher').classList.remove('visible');
+      document.getElementById('createAccountBtn').style.display = 'none';
+      document.getElementById('clientInfoEdit').style.display = 'none';
+    }
+
+    applyViewMode(role);
+    attachListeners(username);
+  }
+
+  function setInfoDisplay(info) {
+    document.getElementById('infoName').textContent = info.name || '—';
+    document.getElementById('infoCompany').textContent = info.company || '—';
+    document.getElementById('infoEmail').textContent = info.email || '—';
+    document.getElementById('infoProject').textContent = info.project || '—';
+  }
+
+  function applyViewMode(role) {
+    document.querySelectorAll('.file-section').forEach(section => {
+      if (role === 'admin') {
+        section.classList.add('admin-view');
+        section.classList.remove('client-view');
+      } else {
+        section.classList.add('client-view');
+        section.classList.remove('admin-view');
+      }
+    });
+  }
+
+  // ===== LIVE LISTENERS (this is what makes uploads/chat arrive without a refresh) =====
+
+  function attachListeners(targetUsername) {
+    if (filesUnsub) { filesUnsub(); filesUnsub = null; }
+    if (chatUnsub) { chatUnsub(); chatUnsub = null; }
+
+    filesUnsub = onSnapshot(collection(db, 'clientFiles', targetUsername, 'items'), snapshot => {
+      allClientFiles = emptyFileBucket();
+      filesById = {};
+      snapshot.forEach(d => {
+        const data = d.data();
+        const item = { id: d.id, ...data };
+        filesById[d.id] = item;
+        if (!allClientFiles[item.section]) allClientFiles[item.section] = [];
+        allClientFiles[item.section].push(item);
+      });
+      FILE_SECTIONS.forEach(section => renderFileList(section));
+    }, err => console.error('Files listener error:', err));
+
+    const chatQuery = query(collection(db, 'clientChats', targetUsername, 'messages'), orderBy('timestamp'));
+    chatUnsub = onSnapshot(chatQuery, snapshot => {
+      const messages = [];
+      snapshot.forEach(d => messages.push(d.data()));
+      renderChatMessages(messages);
+    }, err => console.error('Chat listener error:', err));
+  }
+
+  function renderChatMessages(messages) {
+    const container = document.getElementById('chatMessages');
+    if (messages.length === 0) {
+      container.innerHTML = `<div class="message admin"><span class="sender">Admin</span>Welcome! How can I help you today?</div>`;
+      return;
+    }
+    let html = '';
+    messages.forEach(msg => {
+      const isAdmin = msg.sender === 'admin';
+      html += `<div class="message ${isAdmin ? 'admin' : 'client'}">
+        <span class="sender">${isAdmin ? 'Admin' : 'You'}</span>
+        ${escapeHtml(msg.message)}
+        <span class="time">${msg.time || ''}</span>
+      </div>`;
+    });
+    container.innerHTML = html;
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  window.handleLogout = function () {
+    if (filesUnsub) { filesUnsub(); filesUnsub = null; }
+    if (chatUnsub) { chatUnsub(); chatUnsub = null; }
+    currentUser = null;
+    currentRole = null;
+    viewingClient = null;
+    sessionStorage.removeItem('soulasia_current_user');
+    sessionStorage.removeItem('soulasia_current_role');
+    document.getElementById('dashboard').classList.remove('active');
+    document.getElementById('loginSection').style.display = 'flex';
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('changePasswordPanel').classList.remove('visible');
+    document.getElementById('createAccountPanel').classList.remove('visible');
+    document.getElementById('createAccountBtn').style.display = 'none';
+    document.querySelectorAll('.file-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.dash-btn').forEach(el => el.classList.remove('active'));
+  };
+
+  // ===== CHANGE PASSWORD =====
+
+  window.toggleChangePassword = function () {
+    document.getElementById('changePasswordPanel').classList.toggle('visible');
+  };
+
+  window.toggleCreateAccount = function () {
+    document.getElementById('createAccountPanel').classList.toggle('visible');
+  };
+
+  window.changePassword = async function () {
+    const oldPass = document.getElementById('cpOldPassword').value;
+    const newPass = document.getElementById('cpNewPassword').value;
+    const confirmPass = document.getElementById('cpConfirmPassword').value;
+    const msgEl = document.getElementById('cpMessage');
+
+    if (!oldPass || !newPass || !confirmPass) { msgEl.textContent = 'Please fill in all fields.'; msgEl.style.color = '#c0392b'; return; }
+    if (newPass.length < 4) { msgEl.textContent = 'New password must be at least 4 characters.'; msgEl.style.color = '#c0392b'; return; }
+    if (newPass !== confirmPass) { msgEl.textContent = 'New passwords do not match.'; msgEl.style.color = '#c0392b'; return; }
+
+    try {
+      const snap = await getDoc(doc(db, 'clients', currentUser));
+      if (!snap.exists() || snap.data().password !== oldPass) {
+        msgEl.textContent = 'Current password is incorrect.'; msgEl.style.color = '#c0392b'; return;
+      }
+      await updateDoc(doc(db, 'clients', currentUser), { password: newPass });
+      msgEl.textContent = 'Password updated successfully!';
+      msgEl.style.color = '#27ae60';
+      document.getElementById('cpOldPassword').value = '';
+      document.getElementById('cpNewPassword').value = '';
+      document.getElementById('cpConfirmPassword').value = '';
+    } catch (err) {
+      console.error(err);
+      msgEl.textContent = 'Something went wrong. Try again.';
+      msgEl.style.color = '#c0392b';
+    }
+  };
+
+  // ===== ADMIN CLIENT SWITCHER =====
+
+  async function populateClientSelect() {
+    const select = document.getElementById('clientSelect');
+    select.innerHTML = '<option value="">Select a client...</option>';
+    const snap = await getDocs(collection(db, 'clients'));
+    snap.forEach(d => {
+      const data = d.data();
+      if (d.id !== 'admin' && data.role !== 'admin') {
+        const option = document.createElement('option');
+        option.value = d.id;
+        option.textContent = d.id.charAt(0).toUpperCase() + d.id.slice(1);
+        select.appendChild(option);
+      }
+    });
+  }
+
+  window.switchToClient = async function () {
+    const select = document.getElementById('clientSelect');
+    const username = select.value;
+    if (!username) { alert('Please select a client.'); return; }
+    viewingClient = username;
+
+    const infoSnap = await getDoc(doc(db, 'clientData', username));
+    const info = infoSnap.exists() ? infoSnap.data() : { name: '', company: '', email: '', project: '' };
+    setInfoDisplay(info);
+
+    attachListeners(username);
+    document.getElementById('displayUsername').textContent = username.charAt(0).toUpperCase() + username.slice(1) + ' (Admin View)';
+    document.getElementById('displayUsername2').textContent = username.charAt(0).toUpperCase() + username.slice(1);
+    document.getElementById('roleBadge').textContent = 'Admin Viewing Client';
+    document.getElementById('roleBadge').className = 'role-badge admin';
+    document.getElementById('clientInfoEdit').style.display = 'flex';
+  };
+
+  window.switchBackToAdmin = async function () {
+    viewingClient = null;
+    await showDashboard(currentUser, 'admin');
+  };
+
+  // ===== CLIENT INFO UPDATE =====
+
+  window.updateClientInfo = async function () {
+    if (currentRole !== 'admin') { alert('Only administrators can update client information.'); return; }
+    const targetClient = viewingClient || currentUser;
+
+    const snap = await getDoc(doc(db, 'clientData', targetClient));
+    const info = snap.exists() ? snap.data() : { name: '', company: '', email: '', project: '' };
+    info.name = document.getElementById('editName').value || info.name;
+    info.company = document.getElementById('editCompany').value || info.company;
+    info.email = document.getElementById('editEmail').value || info.email;
+    info.project = document.getElementById('editProject').value || info.project;
+
+    try {
+      await setDoc(doc(db, 'clientData', targetClient), info);
+      setInfoDisplay(info);
+      document.getElementById('editName').value = '';
+      document.getElementById('editCompany').value = '';
+      document.getElementById('editEmail').value = '';
+      document.getElementById('editProject').value = '';
+      alert('Client information updated successfully!');
+    } catch (err) {
+      console.error(err);
+      alert('Update failed. Check the console for details.');
+    }
+  };
+
+  // ===== FILE SYSTEM =====
+
+  window.openSection = function (section) {
+    document.querySelectorAll('.file-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.dash-btn').forEach(el => el.classList.remove('active'));
+
+    const sectionMap = {
+      client_info: 'client_infoSection', pi_permit: 'pi_permitSection', follow_up: 'follow_upSection',
+      inspection: 'inspectionSection', loading: 'loadingSection', shipment: 'shipmentSection', documents: 'documentsSection'
+    };
+    const targetSection = document.getElementById(sectionMap[section]);
+    if (targetSection) targetSection.classList.add('active');
+
+    const buttons = document.querySelectorAll('.dash-btn');
+    const sections = ['client_info', 'pi_permit', 'follow_up', 'inspection', 'loading', 'shipment', 'documents'];
+    const index = sections.indexOf(section);
+    if (buttons[index]) buttons[index].classList.add('active');
+  };
+
+  const INPUT_MAP = {
+    client_info: 'client_infoFileInput', pi_permit: 'pi_permitFileInput', follow_up: 'follow_upFileInput',
+    inspection: 'inspectionFileInput', loading: 'loadingFileInput', shipment: 'shipmentFileInput', documents: 'documentsFileInput'
+  };
+  const LIST_MAP = {
+    client_info: 'client_infoFileList', pi_permit: 'pi_permitFileList', follow_up: 'follow_upFileList',
+    inspection: 'inspectionFileList', loading: 'loadingFileList', shipment: 'shipmentFileList', documents: 'documentsFileList'
+  };
+
+  window.uploadFile = async function (section) {
+    if (currentRole !== 'admin') { alert('You do not have permission to upload files. Only administrators can upload files.'); return; }
+    const targetClient = viewingClient || currentUser;
+    if (currentRole === 'admin' && !viewingClient) {
+      alert('Select a client first using "Switch to Client" above, then upload.');
+      return;
+    }
+
+    const input = document.getElementById(INPUT_MAP[section]);
+    const files = input.files;
+    if (files.length === 0) { alert('Please select at least one file to upload.'); return; }
+
+    const btn = document.querySelector(`#${section}Section .btn-upload`);
+    if (btn) { btn.disabled = true; btn.textContent = 'Uploading...'; }
+
+    for (const file of files) {
+      if (file.size > MAX_FILE_BYTES) {
+        alert(`"${file.name}" is too large (${(file.size / 1024).toFixed(0)}KB). Files must be under ~700KB on the free plan.`);
+        continue;
+      }
+      try {
+        const base64Data = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = () => reject(reader.error);
+          reader.readAsDataURL(file);
+        });
+        await addDoc(collection(db, 'clientFiles', targetClient, 'items'), {
+          section, name: file.name, size: file.size, type: file.type,
+          data: base64Data, uploadedAt: serverTimestamp()
+        });
+      } catch (err) {
+        console.error(err);
+        alert(`Upload failed for "${file.name}". Check the console for details.`);
+      }
+    }
+
+    input.value = '';
+    if (btn) { btn.disabled = false; btn.textContent = 'Upload Files'; }
+  };
+
+  function renderFileList(section) {
+    const listElement = document.getElementById(LIST_MAP[section]);
+    if (!listElement) return;
+    const files = allClientFiles[section] || [];
+
+    if (files.length === 0) {
+      listElement.innerHTML = '<li class="empty-files">No files uploaded yet.</li>';
+      return;
+    }
+
+    let html = '';
+    files.forEach(fileData => {
+      const fileSize = fileData.size < 1024 ? fileData.size + ' B' :
+                       fileData.size < 1048576 ? (fileData.size / 1024).toFixed(1) + ' KB' :
+                       (fileData.size / 1048576).toFixed(1) + ' MB';
+
+      let icon = '📄';
+      if (fileData.type && fileData.type.startsWith('image/')) icon = '🖼️';
+      else if (fileData.type === 'application/pdf') icon = '📕';
+      else if (fileData.type && (fileData.type.includes('word') || fileData.type.includes('document'))) icon = '📘';
+      else if (fileData.type && (fileData.type.includes('excel') || fileData.type.includes('sheet'))) icon = '📊';
+
+      const isAdmin = currentRole === 'admin';
+      html += `
+        <li>
+          <div class="file-name">
+            <span class="icon">${icon}</span>
+            <span>${escapeHtml(fileData.name)}</span>
+          </div>
+          <div class="file-actions">
+            <span class="file-size">${fileSize}</span>
+            <a href="${fileData.data}" download="${fileData.name}">Download</a>
+            ${isAdmin ? `<button class="delete" onclick="deleteFile('${fileData.id}')">Delete</button>` : ''}
+          </div>
+        </li>
+      `;
+    });
+    listElement.innerHTML = html;
+  }
+
+  window.deleteFile = async function (id) {
+    if (currentRole !== 'admin') { alert('You do not have permission to delete files. Only administrators can delete files.'); return; }
+    if (!confirm('Are you sure you want to delete this file?')) return;
+
+    const targetClient = viewingClient || currentUser;
+    const item = filesById[id];
+    if (!item) return;
+
+    try {
+      await deleteDoc(doc(db, 'clientFiles', targetClient, 'items', id));
+    } catch (err) {
+      console.error(err);
+      alert('Delete failed. Check the console for details.');
+    }
+  };
+
+  // ===== CHAT SYSTEM =====
+
+  window.sendMessage = async function () {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+    const targetClient = viewingClient || currentUser;
+
+    try {
+      await addDoc(collection(db, 'clientChats', targetClient, 'messages'), {
+        sender: currentRole === 'admin' ? 'admin' : 'client',
+        message,
+        time: new Date().toLocaleTimeString(),
+        timestamp: serverTimestamp()
+      });
+      input.value = '';
+    } catch (err) {
+      console.error(err);
+      alert('Message failed to send. Check the console for details.');
+    }
+  };
+
+  // ===== MISC =====
+
+  document.getElementById('password').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') window.handleLogin();
+  });
+  document.getElementById('username').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') window.handleLogin();
+  });
+
+  const faders = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  faders.forEach(el => observer.observe(el));
+
+  // ===== INIT =====
+
+  (async function init() {
+    if (!CONFIGURED) return;
+    await ensureSeedAccounts();
+
+    const savedUser = sessionStorage.getItem('soulasia_current_user');
+    const savedRole = sessionStorage.getItem('soulasia_current_role');
+    if (savedUser) {
+      const snap = await getDoc(doc(db, 'clients', savedUser));
+      if (snap.exists()) {
+        currentUser = savedUser;
+        currentRole = savedRole || snap.data().role || 'client';
+        await showDashboard(savedUser, currentRole);
+      }
+    }
+  })();
+</script>
+
+</body>
+</html>
