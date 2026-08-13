@@ -988,9 +988,8 @@
     getFirestore, collection, doc, getDoc, getDocs, setDoc, updateDoc,
     addDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  import {
-    getStorage, ref, uploadBytes, getDownloadURL, deleteObject
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+  // Files are stored directly inside Firestore documents (base64) so no
+  // paid Firebase Storage / Blaze plan is required. Max ~700KB per file.
 
   // =====================================================================
   // 1) PASTE YOUR FIREBASE CONFIG HERE (from Firebase Console > Project
@@ -1012,7 +1011,7 @@
 
   const app = CONFIGURED ? initializeApp(firebaseConfig) : null;
   const db = CONFIGURED ? getFirestore(app) : null;
-  const storage = CONFIGURED ? getStorage(app) : null;
+  const MAX_FILE_BYTES = 700000; // ~700KB, stays safely under Firestore's 1MB document cap once base64-encoded
 
   const FILE_SECTIONS = ['client_info', 'pi_permit', 'follow_up', 'inspection', 'loading', 'shipment', 'documents'];
 
@@ -1383,18 +1382,24 @@
     if (btn) { btn.disabled = true; btn.textContent = 'Uploading...'; }
 
     for (const file of files) {
+      if (file.size > MAX_FILE_BYTES) {
+        alert(`"${file.name}" is too large (${(file.size / 1024).toFixed(0)}KB). Files must be under ~700KB on the free plan.`);
+        continue;
+      }
       try {
-        const path = `clientFiles/${targetClient}/${section}/${Date.now()}_${file.name}`;
-        const storageRef = ref(storage, path);
-        await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(storageRef);
+        const base64Data = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = () => reject(reader.error);
+          reader.readAsDataURL(file);
+        });
         await addDoc(collection(db, 'clientFiles', targetClient, 'items'), {
           section, name: file.name, size: file.size, type: file.type,
-          url, storagePath: path, uploadedAt: serverTimestamp()
+          data: base64Data, uploadedAt: serverTimestamp()
         });
       } catch (err) {
         console.error(err);
-        alert(`Upload failed for "${file.name}". Check that Firebase Storage is enabled (Blaze plan) and rules allow writes.`);
+        alert(`Upload failed for "${file.name}". Check the console for details.`);
       }
     }
 
@@ -1433,7 +1438,7 @@
           </div>
           <div class="file-actions">
             <span class="file-size">${fileSize}</span>
-            <a href="${fileData.url}" target="_blank" rel="noopener">Download</a>
+            <a href="${fileData.data}" download="${fileData.name}">Download</a>
             ${isAdmin ? `<button class="delete" onclick="deleteFile('${fileData.id}')">Delete</button>` : ''}
           </div>
         </li>
@@ -1452,9 +1457,6 @@
 
     try {
       await deleteDoc(doc(db, 'clientFiles', targetClient, 'items', id));
-      if (item.storagePath) {
-        await deleteObject(ref(storage, item.storagePath)).catch(() => {});
-      }
     } catch (err) {
       console.error(err);
       alert('Delete failed. Check the console for details.');
