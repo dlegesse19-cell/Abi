@@ -735,20 +735,6 @@
       </div>
       <button class="btn-login" id="loginBtn" onclick="handleLogin()">Login →</button>
       <div class="login-error" id="loginError">Invalid username or password. Please try again.</div>
-
-      <div class="admin-panel" id="adminPanel">
-        <h4>🔑 Admin: Create Client Account</h4>
-        <div class="form-row">
-          <input type="text" id="newUsername" placeholder="New Username">
-          <input type="password" id="newPassword" placeholder="New Password">
-          <button class="btn-admin" onclick="createAccount()">Create Account</button>
-        </div>
-        <div class="admin-message" id="adminMessage"></div>
-      </div>
-
-      <div style="text-align:center; margin-top:16px;">
-        <a href="#" onclick="toggleAdminPanel(); return false;" style="font-size:0.75rem; color:var(--ink-soft); text-decoration:underline;">Admin: Create Account</a>
-      </div>
     </div>
   </div>
 </section>
@@ -761,9 +747,20 @@
         <span class="role-badge" id="roleBadge">Client</span>
       </span>
       <div class="actions">
+        <button class="btn-logout" id="createAccountBtn" style="display:none;" onclick="toggleCreateAccount()">Create Client Account</button>
         <button class="btn-logout" onclick="toggleChangePassword()">Change Password</button>
         <button class="btn-logout" onclick="handleLogout()">Logout</button>
       </div>
+    </div>
+
+    <div class="password-panel" id="createAccountPanel">
+      <h4>🔑 Create Client Account</h4>
+      <div class="form-row">
+        <input type="text" id="newUsername" placeholder="New Username">
+        <input type="password" id="newPassword" placeholder="New Password">
+        <button class="btn-admin" onclick="createAccount()">Create Account</button>
+      </div>
+      <div class="admin-message" id="adminMessage"></div>
     </div>
 
     <div class="password-panel" id="changePasswordPanel">
@@ -1048,10 +1045,6 @@
 
   // ===== ADMIN: CREATE ACCOUNT =====
 
-  window.toggleAdminPanel = function () {
-    document.getElementById('adminPanel').classList.toggle('visible');
-  };
-
   window.createAccount = async function () {
     const username = document.getElementById('newUsername').value.trim();
     const password = document.getElementById('newPassword').value.trim();
@@ -1135,6 +1128,7 @@
       badge.className = 'role-badge admin';
       document.getElementById('dashboardSub').textContent = 'You have full access to manage all client files.';
       document.getElementById('adminSwitcher').classList.add('visible');
+      document.getElementById('createAccountBtn').style.display = 'inline-block';
       await populateClientSelect();
       document.getElementById('clientInfoEdit').style.display = 'flex';
     } else {
@@ -1142,6 +1136,7 @@
       badge.className = 'role-badge';
       document.getElementById('dashboardSub').textContent = 'Select a section below to view your project files.';
       document.getElementById('adminSwitcher').classList.remove('visible');
+      document.getElementById('createAccountBtn').style.display = 'none';
       document.getElementById('clientInfoEdit').style.display = 'none';
     }
 
@@ -1233,6 +1228,8 @@
     document.getElementById('username').value = '';
     document.getElementById('password').value = '';
     document.getElementById('changePasswordPanel').classList.remove('visible');
+    document.getElementById('createAccountPanel').classList.remove('visible');
+    document.getElementById('createAccountBtn').style.display = 'none';
     document.querySelectorAll('.file-section').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.dash-btn').forEach(el => el.classList.remove('active'));
   };
@@ -1241,6 +1238,10 @@
 
   window.toggleChangePassword = function () {
     document.getElementById('changePasswordPanel').classList.toggle('visible');
+  };
+
+  window.toggleCreateAccount = function () {
+    document.getElementById('createAccountPanel').classList.toggle('visible');
   };
 
   window.changePassword = async function () {
