@@ -705,7 +705,7 @@
       <a href="index.html#services">Services</a>
       <a href="index.html#projects">Projects</a>
       <a href="Testimonials.html">Testimonials</a>
-      <a href="followup.html" class="active">Follow Up</a>
+      <a href="followups.html" class="active">Follow Up</a>
       <a href="index.html#contact">Contact</a>
     </nav>
     <a href="index.html#contact" class="nav-cta">Get a Quote</a>
@@ -781,6 +781,8 @@
       </select>
       <button class="btn-switch" onclick="switchToClient()">View Client Files</button>
       <button class="btn-switch" onclick="switchBackToAdmin()" style="background:var(--sand-2); color:var(--ink);">Back to Admin</button>
+      <button class="btn-switch" onclick="resetClientPassword()" style="background:var(--teal); color:var(--white);">Reset Password</button>
+      <button class="btn-switch" onclick="deleteClient()" style="background:#c0392b; color:var(--white);">Delete Client</button>
     </div>
 
     <h2>Welcome, <span id="displayUsername2">Client</span>!</h2>
@@ -960,7 +962,7 @@
         <a href="index.html#services">Services</a>
         <a href="index.html#projects">Projects</a>
         <a href="Testimonials.html">Testimonials</a>
-        <a href="followup.html">Follow Up</a>
+        <a href="followups.html">Follow Up</a>
         <a href="index.html#contact">Contact</a>
       </div>
       <div>
@@ -1310,6 +1312,46 @@
   window.switchBackToAdmin = async function () {
     viewingClient = null;
     await showDashboard(currentUser, 'admin');
+  };
+
+  window.resetClientPassword = async function () {
+    const select = document.getElementById('clientSelect');
+    const username = select.value;
+    if (!username) { alert('Please select a client first.'); return; }
+
+    const newPass = prompt(`Enter a new password for "${username}" (at least 4 characters):`);
+    if (!newPass) return;
+    if (newPass.length < 4) { alert('Password must be at least 4 characters.'); return; }
+
+    try {
+      await updateDoc(doc(db, 'clients', username), { password: newPass });
+      alert(`Password for "${username}" has been reset. Share the new password with them directly.`);
+    } catch (err) {
+      console.error(err);
+      alert('Password reset failed. Check the console for details.');
+    }
+  };
+
+  window.deleteClient = async function () {
+    const select = document.getElementById('clientSelect');
+    const username = select.value;
+    if (!username) { alert('Please select a client first.'); return; }
+    if (!confirm(`Permanently delete the client "${username}"? This removes their login and can't be undone.`)) return;
+
+    try {
+      await deleteDoc(doc(db, 'clients', username));
+      await deleteDoc(doc(db, 'clientData', username)).catch(() => {});
+      if (viewingClient === username) {
+        viewingClient = null;
+        await showDashboard(currentUser, 'admin');
+      } else {
+        await populateClientSelect();
+      }
+      alert(`Client "${username}" has been deleted.`);
+    } catch (err) {
+      console.error(err);
+      alert('Delete failed. Check the console for details.');
+    }
   };
 
   // ===== CLIENT INFO UPDATE =====
