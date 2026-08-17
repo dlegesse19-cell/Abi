@@ -529,7 +529,11 @@
   .foot-grid a:hover{color:var(--gold-light);}
   .copyright{padding-top:22px; font-size:0.8rem; color:#728089; text-align:center;}
   @media (max-width:760px){ .foot-grid{grid-template-columns:1fr;} }
-
+/* Sliding Logos Animation */
+  @keyframes slideLogos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
   /* ===== Fade-in Animations ===== */
   .fade-in{
     opacity:0;
