@@ -94,6 +94,54 @@
   .navlinks, .nav-cta, .nav-cta-secondary{white-space:nowrap;}
   @media (max-width:860px){ .navlinks{display:none;} }
 
+  /* ===== Mobile Menu ===== */
+  .hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:34px;
+    height:34px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+  }
+  .hamburger span{
+    display:block;
+    width:100%;
+    height:2px;
+    background:var(--white);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{
+    display:none;
+    flex-direction:column;
+    background:var(--navy-deep);
+    border-top:1px solid rgba(247,208,70,0.18);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .mobile-menu.open{display:flex; max-height:400px;}
+  .mobile-menu a{
+    color:#CBD3D8;
+    padding:16px 24px;
+    font-size:0.95rem;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .mobile-menu a:hover, .mobile-menu a:active{color:var(--gold-light); background:rgba(255,255,255,0.04);}
+  @media (max-width:860px){
+    .hamburger{display:flex;}
+    .nav-cta{display:none;}
+  }
+  @media (max-width:540px){
+    .nav-cta-secondary{padding:9px 14px; font-size:0.8rem;}
+  }
+
   /* ===== Hero ===== */
   .hero{
     background:linear-gradient(rgba(11,37,64,0.75), rgba(11,37,64,0.85)), url('images/hero-bg.jpg');
@@ -526,8 +574,19 @@
     <div style="display:flex; gap:12px; align-items:center;">
       <a href="#contact" class="nav-cta">Get a Quote</a>
       <a href="followups.html" class="nav-cta-secondary">Follow Up</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobileMenu()">Home</a>
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+    <a href="#services" onclick="closeMobileMenu()">Services</a>
+    <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+    <a href="Testimonials.html" onclick="closeMobileMenu()">Testimonials</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  </nav>
 </header>
 
 <!-- ===== HERO ===== -->
@@ -549,7 +608,7 @@
     <span class="eyebrow">Trusted by Leading Hotels, Construction Companies &amp; Real Estate Developers Across Africa</span>
     <div class="trust-grid">
       <div class="trust-item"><b><span class="count" data-target="15">0</span>+ Years</b>End-to-End Supply Chain Experience</div>
-      <div class="trust-item"><b><span class="count" data-target="4">0</span> Offices</b>Hong Kong, Guangzhou, Addis Ababa &amp; UAE</div>
+      <div class="trust-item"><b><span class="count" data-target="4">0</span> Offices</b>Hong Kong, Foshan, Addis Ababa &amp; UAE</div>
       <div class="trust-item"><b><span class="count" data-target="3">0</span> Languages</b>English, Amharic &amp; Mandarin</div>
       <div class="trust-item"><b><span class="count" data-target="1000">0</span>+ Projects</b>Hotels, Apartments &amp; Real Estate</div>
     </div>
@@ -573,12 +632,12 @@
       <div class="why-item">
         <span class="icon-circle">🗣️</span>
         <h3>Multilingual Team</h3>
-        <p>English, Amharic, and Mandarin we speak your language and understand your culture.</p>
+        <p>English, Amharic, and Mandarin — we speak your language and understand your culture.</p>
       </div>
       <div class="why-item">
         <span class="icon-circle">🏗️</span>
         <h3>1000+ Projects Completed</h3>
-        <p>Hotels, apartments, real estate developments, and woodworking factories across Ethiopia.</p>
+        <p>Hotels, apartments, real estate developments, and woodworking factories across Ethiopia and beyond.</p>
       </div>
     </div>
   </div>
@@ -786,7 +845,7 @@
         </div>
         <div class="contact-detail">
           <span class="icon">📍</span>
-          <div class="info"><strong>Office Locations</strong>Addis Ababa, Ethiopia · Guangzhou, China · UAE</div>
+          <div class="info"><strong>Office Locations</strong>Addis Ababa, Ethiopia · Foshan, China · UAE</div>
         </div>
         <div class="contact-detail">
           <span class="icon">🕐</span>
@@ -838,7 +897,7 @@
     <div class="foot-grid">
       <div>
         <h4>SOULASIA INTERNATIONAL LTD.</h4>
-        <p>Hong Kong Base | Offices in Guangzhou, Addis Ababa &amp; UAE</p>
+        <p>Hong Kong Base | Offices in Foshan, Addis Ababa &amp; UAE</p>
         <p style="margin-top:8px;">© 2026 Soulasia International Ltd. All Rights Reserved.</p>
       </div>
       <div>
@@ -855,7 +914,7 @@
         <h4>Contact</h4>
         <a href="mailto:Soulasia251@gmail.com">Soulasia251@gmail.com</a>
         <a href="tel:+251911500019">📞 +251 91 150 0019</a>
-        <span>📍 Addis Ababa, Ethiopia | Guangzhou, China | UAE</span>
+        <span>📍 Addis Ababa, Ethiopia | Foshan, China | UAE</span>
       </div>
     </div>
   </div>
@@ -870,6 +929,15 @@
 
 <!-- ===== SCROLL ANIMATION ===== -->
 <script>
+  function toggleMobileMenu() {
+    document.getElementById('hamburgerBtn').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('hamburgerBtn').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
   const faders = document.querySelectorAll('.fade-in');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
