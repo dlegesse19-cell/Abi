@@ -305,7 +305,53 @@
   @media (max-width:860px){ .gallery-grid{grid-template-columns:1fr 1fr;} }
   @media (max-width:480px){ .gallery-grid{grid-template-columns:1fr;} }
 
-  
+  /* ===== Polaroid Staff Gallery ===== */
+  .polaroid-gallery{
+    display:flex;
+    flex-wrap:wrap;
+    gap:36px 28px;
+    justify-content:center;
+    padding:20px 10px 10px;
+  }
+  .polaroid{
+    background:var(--white);
+    padding:14px 14px 40px;
+    box-shadow:0 10px 24px rgba(11,37,64,0.14);
+    width:240px;
+    transition:transform .3s ease, box-shadow .3s ease, z-index 0s;
+    position:relative;
+  }
+  .polaroid:hover{
+    transform:rotate(0deg) scale(1.05) !important;
+    box-shadow:0 16px 34px rgba(11,37,64,0.22);
+    z-index:5;
+  }
+  .polaroid img{
+    display:block;
+    width:100%;
+    height:220px;
+    object-fit:cover;
+  }
+  .polaroid .cap{
+    position:absolute;
+    bottom:10px;
+    left:0;
+    right:0;
+    text-align:center;
+    font-family:Georgia, 'Times New Roman', serif;
+    font-size:0.85rem;
+    color:var(--ink);
+  }
+  .rot-1{transform:rotate(-4deg);}
+  .rot-2{transform:rotate(3deg);}
+  .rot-3{transform:rotate(-2deg);}
+  .rot-4{transform:rotate(5deg);}
+  .rot-5{transform:rotate(-6deg);}
+
+  @media (max-width:640px){
+    .polaroid{width:160px; padding:10px 10px 30px;}
+    .polaroid img{height:150px;}
+  }
 
   /* ===== Hotel Project Gallery ===== */
   .hotel-projects{display:flex;flex-direction:column;gap:48px;}
@@ -605,6 +651,7 @@
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
+      <a href="#gallery">Team</a>
       <a href="Testimonials.html">Testimonials</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -621,6 +668,7 @@
     <a href="#about" onclick="closeMobileMenu()">About</a>
     <a href="#services" onclick="closeMobileMenu()">Services</a>
     <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+    <a href="#gallery" onclick="closeMobileMenu()">Team</a>
     <a href="Testimonials.html" onclick="closeMobileMenu()">Testimonials</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   </nav>
@@ -781,82 +829,30 @@
     </div>
   </div>
 </section>
-  
-<!-- ===== PHOTO GALLERY ===== -->
-<section class="pad fade-in" id="gallery" style="background:var(--white);">
+
+<!-- ===== PHOTO GALLERY (Polaroid Style - Staff) ===== -->
+<section class="pad fade-in" id="gallery" style="background:var(--sand);">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Behind the Scenes</span>
       <h2>Meet the people behind Soulasia</h2>
       <p>From our sourcing agents in China to our logistics and client-support team in Addis Ababa, our staff work every day to make sure your projects are delivered right, on time, and with care.</p>
     </div>
-    <div class="gallery-grid">
 
-      <div class="gallery-item">
-        <img src="images/gallery-1.jpg" alt="Describe photo 1">
-        <div class="overlay"><h3>Title 1</h3><p>Caption 1</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-2.jpg" alt="Describe photo 2">
-        <div class="overlay"><h3>Title 2</h3><p>Caption 2</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-3.jpg" alt="Describe photo 3">
-        <div class="overlay"><h3>Title 3</h3><p>Caption 3</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-4.jpg" alt="Describe photo 4">
-        <div class="overlay"><h3>Title 4</h3><p>Caption 4</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-5.jpg" alt="Describe photo 5">
-        <div class="overlay"><h3>Title 5</h3><p>Caption 5</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-6.jpg" alt="Describe photo 6">
-        <div class="overlay"><h3>Title 6</h3><p>Caption 6</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-7.jpg" alt="Describe photo 7">
-        <div class="overlay"><h3>Title 7</h3><p>Caption 7</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-8.jpg" alt="Describe photo 8">
-        <div class="overlay"><h3>Title 8</h3><p>Caption 8</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-9.jpg" alt="Describe photo 9">
-        <div class="overlay"><h3>Title 9</h3><p>Caption 9</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-10.jpg" alt="Describe photo 10">
-        <div class="overlay"><h3>Title 10</h3><p>Caption 10</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-11.jpg" alt="Describe photo 11">
-        <div class="overlay"><h3>Title 11</h3><p>Caption 11</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-12.jpg" alt="Describe photo 12">
-        <div class="overlay"><h3>Title 12</h3><p>Caption 12</p></div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery-13.jpg" alt="Describe photo 13">
-        <div class="overlay"><h3>Title 13</h3><p>Caption 13</p></div>
-      </div>
-
+    <div class="polaroid-gallery">
+      <div class="polaroid rot-1"><img src="images/gallery-1.jpg" alt="Describe photo 1"><span class="cap">Caption 1</span></div>
+      <div class="polaroid rot-2"><img src="images/gallery-2.jpg" alt="Describe photo 2"><span class="cap">Caption 2</span></div>
+      <div class="polaroid rot-3"><img src="images/gallery-3.jpg" alt="Describe photo 3"><span class="cap">Caption 3</span></div>
+      <div class="polaroid rot-4"><img src="images/gallery-4.jpg" alt="Describe photo 4"><span class="cap">Caption 4</span></div>
+      <div class="polaroid rot-5"><img src="images/gallery-5.jpg" alt="Describe photo 5"><span class="cap">Caption 5</span></div>
+      <div class="polaroid rot-1"><img src="images/gallery-6.jpg" alt="Describe photo 6"><span class="cap">Caption 6</span></div>
+      <div class="polaroid rot-2"><img src="images/gallery-7.jpg" alt="Describe photo 7"><span class="cap">Caption 7</span></div>
+      <div class="polaroid rot-3"><img src="images/gallery-8.jpg" alt="Describe photo 8"><span class="cap">Caption 8</span></div>
+      <div class="polaroid rot-4"><img src="images/gallery-9.jpg" alt="Describe photo 9"><span class="cap">Caption 9</span></div>
+      <div class="polaroid rot-5"><img src="images/gallery-10.jpg" alt="Describe photo 10"><span class="cap">Caption 10</span></div>
+      <div class="polaroid rot-1"><img src="images/gallery-11.jpg" alt="Describe photo 11"><span class="cap">Caption 11</span></div>
+      <div class="polaroid rot-2"><img src="images/gallery-12.jpg" alt="Describe photo 12"><span class="cap">Caption 12</span></div>
+      <div class="polaroid rot-3"><img src="images/gallery-13.jpg" alt="Describe photo 13"><span class="cap">Caption 13</span></div>
     </div>
   </div>
 </section>
@@ -1110,6 +1106,7 @@
         <a href="#about">About Us</a>
         <a href="#services">Our Services</a>
         <a href="#projects">Our Projects</a>
+        <a href="#gallery">Team</a>
         <a href="Testimonials.html">Testimonials</a>
         <a href="followups.html">Follow Up</a>
         <a href="#contact">Contact</a>
