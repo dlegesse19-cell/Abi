@@ -47,25 +47,26 @@
 
   header{
     position:sticky; top:0; z-index:50;
-    background:var(--navy);
+    background:var(--white);
     border-bottom:1px solid rgba(247,208,70,0.25);
   }
+  
   .nav{
     display:flex; align-items:center; justify-content:space-between;
     padding:18px 0;
   }
-  .logo{
+.logo{
     font-family:Georgia, 'Times New Roman', serif;
     font-weight:600;
     font-size:1.25rem;
-    color:var(--white);
+    color:#0B2540;
     letter-spacing:0.02em;
   }
   .logo span{color:var(--gold-light);}
   .navlinks{display:flex; gap:34px; font-size:0.92rem;}
-  .navlinks a{color:#CBD3D8; transition:color .2s;}
+  .navlinks a{color:#0B2540; transition:color .2s;}
   .navlinks a:hover{color:var(--gold-light);}
-  .navlinks a.active{color:var(--white);}
+  .navlinks a.active{color:#0B2540;}
   .nav-cta{
     background:var(--gold);
     color:var(--navy-deep);
@@ -719,7 +720,10 @@
 
 <header>
   <div class="wrap nav">
-    <div class="logo">SOULASIA <span>INTERNATIONAL</span></div>
+    <div class="logo">
+  <img src="images/logo.png" alt="Soulasia International Ltd." class="site-logo">
+</div>
+
     <nav class="navlinks">
       <a href="index.html">Home</a>
       <a href="index.html#about">About</a>
