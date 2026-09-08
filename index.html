@@ -371,6 +371,16 @@
   .hotel-source a{color:var(--navy);text-decoration:underline;}
   @media(max-width:760px){.hotel-photo-grid{grid-template-columns:1fr;}.hotel-photo{border-right:0;border-bottom:1px solid #EAE2D2;}.hotel-photo:last-child{border-bottom:0}.hotel-photo img{height:250px;}}
 
+.partner-logo{
+  filter:grayscale(100%);
+  opacity:0.55;
+  transition:filter .3s ease, opacity .3s ease;
+}
+.partner-logo:hover{
+  filter:grayscale(0%);
+  opacity:1;
+}
+  
   /* ===== Client Logos ===== */
 .logo-strip{background:var(--navy); padding:40px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .logo-row{
