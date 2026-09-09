@@ -23,8 +23,8 @@
   html{scroll-behavior:smooth;}
   body{
     font-family:-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-    color:#C7CFD4;
-    background:#003153;
+    color:#0B2540;
+    background:#FFFFFF;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
@@ -32,7 +32,7 @@
     font-family:Georgia, 'Times New Roman', serif;
     font-weight:600;
     letter-spacing:-0.01em;
-    color:var(--white);
+    color:var(--navy);
   }
   a{color:inherit; text-decoration:none;}
   .eyebrow{
@@ -59,7 +59,7 @@
     font-family:Georgia, 'Times New Roman', serif;
     font-weight:600;
     font-size:1.25rem;
-    color:var(--white);
+    color:var(--navy);
     letter-spacing:0.02em;
   }
   .logo span{color:var(--gold-light);}
@@ -68,15 +68,15 @@
   .navlinks a:hover{color:var(--gold-light);}
   .navlinks a.active{color:#0B2540;}
   .nav-cta{
-    background:var(--gold);
-    color:var(--navy-deep);
+    background:#A9383D;
+    color:var(--white);
     font-weight:600;
     font-size:0.85rem;
     padding:10px 20px;
     border-radius:2px;
     transition:background .2s;
   }
-  .nav-cta:hover{background:var(--gold-light);}
+  .nav-cta:hover{background:#C24A52;}
   .nav-cta-secondary{
     background:transparent;
     color:#0B2540;
@@ -84,11 +84,11 @@
     font-size:0.85rem;
     padding:10px 20px;
     border-radius:2px;
-    border:1px solid rgba(255,255,255,0.3);
+    border:1px solid rgba(11,37,64,0.3);
     transition:background .2s, border .2s;
   }
   .nav-cta-secondary:hover{
-    background:rgba(255,255,255,0.1);
+    background:rgba(11,37,64,0.06);
     border-color:var(--gold-light);
   }
   .navlinks, .nav-cta, .nav-cta-secondary{white-space:nowrap;}
@@ -111,7 +111,7 @@
     display:block;
     width:100%;
     height:2px;
-    background:var(--white);
+    background:var(--navy);
     transition:transform .25s ease, opacity .25s ease;
   }
   .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -215,42 +215,10 @@
   @media (max-width:760px){ .trust-grid{grid-template-columns:1fr 1fr;} }
 
   /* ===== Section Shared ===== */
- .section-head{max-width:600px; margin-bottom:56px;}
+  .section-head{max-width:600px; margin-bottom:56px;}
   .section-head .eyebrow{margin-bottom:10px; display:block;}
   .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem);}
   .section-head p{color:var(--ink-soft); margin-top:12px; font-size:1rem;}
-
- #about .section-head h2,
-  #about .section-head .eyebrow{
-    color:var(--white);
-  }
-  #about .section-head p{
-    color:#C7CFD4;
-  }
-
-  #projects .section-head h2,
-  #projects .section-head .eyebrow{
-    color:var(--white);
-  }
-  #projects .section-head p{
-    color:#C7CFD4;
-  }
-
-  #gallery .section-head h2,
-  #gallery .section-head .eyebrow{
-    color:var(--white);
-  }
-  #gallery .section-head p{
-    color:#C7CFD4;
-  }
-
-#services .section-head h2,
-  #services .section-head .eyebrow{
-    color:var(--white);
-  }
-  #services .section-head p{
-    color:#C7CFD4;
-  }
 
   /* ===== Why Choose Us ===== */
   .why-grid{
@@ -344,7 +312,7 @@
   @media (max-width:480px){ .gallery-grid{grid-template-columns:1fr;} }
 
   /* ===== Polaroid Staff Gallery ===== */
-.polaroid-gallery{
+  .polaroid-gallery{
     display:flex;
     flex-wrap:wrap;
     gap:6px;
@@ -358,8 +326,8 @@
     border-radius:6px;
     box-shadow:0 10px 30px rgba(11,37,64,0.10);
   }
-  
-.polaroid{
+
+  .polaroid{
     background:var(--white);
     padding:8px 8px 26px;
     box-shadow:0 6px 14px rgba(11,37,64,0.16);
@@ -423,18 +391,18 @@
   .hotel-source a{color:var(--navy);text-decoration:underline;}
   @media(max-width:760px){.hotel-photo-grid{grid-template-columns:1fr;}.hotel-photo{border-right:0;border-bottom:1px solid #EAE2D2;}.hotel-photo:last-child{border-bottom:0}.hotel-photo img{height:250px;}}
 
-.partner-logo{
-  filter:grayscale(100%);
-  opacity:0.55;
-  transition:filter .3s ease, opacity .3s ease;
-}
-.partner-logo:hover{
-  filter:grayscale(0%);
-  opacity:1;
-}
-  
+  .partner-logo{
+    filter:grayscale(100%);
+    opacity:0.55;
+    transition:filter .3s ease, opacity .3s ease;
+  }
+  .partner-logo:hover{
+    filter:grayscale(0%);
+    opacity:1;
+  }
+
   /* ===== Client Logos ===== */
-.logo-strip{background:var(--navy); padding:40px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .logo-strip{background:var(--navy); padding:40px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .logo-row{
     display:flex;
     justify-content:space-around;
@@ -451,68 +419,6 @@
     font-weight:500;
   }
   @media (max-width:640px){ .logo-row span{font-size:0.75rem;} }
-
-  /* ===== Testimonials Preview ===== */
-  .Testimonials-preview-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-  }
-  .testimonial-preview-card{
-    background:var(--white);
-    padding:30px 28px;
-    border-radius:4px;
-    border:1px solid var(--line);
-    transition:transform .3s ease;
-  }
-  .testimonial-preview-card:hover{transform:translateY(-4px);}
-  .testimonial-preview-card .stars{
-    color:var(--gold);
-    font-size:1rem;
-    letter-spacing:3px;
-    margin-bottom:12px;
-  }
-  .testimonial-preview-card .quote{
-    font-size:0.9rem;
-    line-height:1.6;
-    color:var(--ink-soft);
-    font-style:italic;
-    margin-bottom:14px;
-  }
-  .testimonial-preview-card .client-info strong{
-    color:var(--navy);
-    display:block;
-    font-size:0.9rem;
-    font-family:Georgia, 'Times New Roman', serif;
-  }
-  .testimonial-preview-card .client-info span{
-    font-size:0.78rem;
-    color:var(--ink-soft);
-  }
-  .btn-testimonial{
-    display:inline-block;
-    background:transparent;
-    color:var(--gold);
-    font-weight:600;
-    font-size:0.95rem;
-    padding:14px 40px;
-    border:2px solid var(--gold);
-    border-radius:2px;
-    transition:background .3s, color .3s, transform .2s;
-    letter-spacing:0.04em;
-    cursor:pointer;
-  }
-  .btn-testimonial:hover{
-    background:var(--gold);
-    color:var(--navy-deep);
-    transform:translateY(-2px);
-  }
-  @media (max-width:860px){
-    .Testimonials-preview-grid{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:640px){
-    .Testimonials-preview-grid{grid-template-columns:1fr;}
-  }
 
   /* ===== CTA ===== */
   .cta{
@@ -634,8 +540,7 @@
   .foot-grid a:hover{color:var(--gold-light);}
   .copyright{padding-top:22px; font-size:0.8rem; color:#728089; text-align:center;}
   @media (max-width:760px){ .foot-grid{grid-template-columns:1fr;} }
-/* Sliding Logos Animation */
-  
+
   /* ===== Fade-in Animations ===== */
   .fade-in{
     opacity:0;
@@ -669,31 +574,21 @@
     --red-dark:#FF0800;
     --red-light:#FF0800;
   }
-
-  }
-  .eyebrow{color:var(--red);}
-  .logo span{color:var(--red);}
-  .nav-cta{background:var(--red);}
-  .nav-cta:hover{background:var(--red);}
-  .btn-primary{background:var(--red);}
-  .btn-primary:hover{background:var(--red);}
   .service-card:hover{border-color:rgba(168,50,50,0.45);}
   .hotel-project{border-left:4px solid var(--red);}
   .hotel-project-head{border-bottom-color:rgba(168,50,50,0.25);}
-  .testimonial-preview-card{border-top:3px solid var(--red);}
-  .testimonial-preview-card:hover{border-top-color:var(--red);}
 
-.site-logo{
-  height:70px;
-  width:auto;
-  display:block;
-}
-
-@media (max-width:640px){
   .site-logo{
-    height:52px;
+    height:70px;
+    width:auto;
+    display:block;
   }
-}
+
+  @media (max-width:640px){
+    .site-logo{
+      height:52px;
+    }
+  }
 
 </style>
 </head>
@@ -970,83 +865,83 @@
       <img src="logo images/abyssinia-woodworks.png" alt="Abyssinia Wood Works" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/aicc.png" alt="AICC" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/adane.png" alt="Adane" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
-      <img src="logo images/africa-hotel.png" alt="Africa Hotel" class="partner-logo" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
+      <img src="logo images/africa-hotel.png" alt="Africa Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
+
       <img src="logo images/afrobrans.png" alt="Afrobrans" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/afro.png" alt="Afro Sweden Real estate" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/agober.png" alt="Agober Apartments" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/bellevue.png" alt="Bellevue Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-   
+
       <img src="logo images/bora.png" alt="Bora" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/best-western.png" alt="Best Western Premier" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-            
+
       <img src="logo images/cactus.png" alt="Cactus" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/caramel-hotel.png" alt="Caramel Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/desfam.png" alt="Desfam Apartment" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/dstv.png" alt="DSTV" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/gift-realestate.png" alt="Gift Real Estate" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/grand-legacy.png" alt="Grand Legacy Real Estate" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/goh.png" alt="Goh Betoch Bank" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/holiday.png" alt="Holiday Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/ivy-hotel.png" alt="Ivy Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/km-woodworks.png" alt="KM Woodworks" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/makers.png" alt="Makers Lab" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/mamas-kitchen.png" alt="Mama's Kitchen" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/mananda-hotel.png" alt="Mananda Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/morning-star.png" alt="Morning Star Mall" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/mulmul-bakery.png" alt="Mulmul Bakery" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/obsidian-hotel.png" alt="Obsidian Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/planet-hotel.png" alt="Planet Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/robi.png" alt="Robi Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/temesgen-hotel.png" alt="Temesgen International Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/the-place.png" alt="The palce Lexury Living" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/tk-hotel.png" alt="TK Hotel & Resort" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/v-lounge.png" alt="V lounge" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/waryt-furniture.png" alt="Waryt Furniture" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/waryt-woodwork.png" alt="Waryt Wood Work" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
 
       <img src="logo images/wc.png" alt="WC" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/wow.png" alt="WOW Burger" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/yatu-hotel.png" alt="Yatu Hotel" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/yod-abyssinia.png" alt="Yod Abyssinia" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/zamzam.png" alt="ZamZam Bank" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
       <img src="logo images/zeplash.png" alt="Ze Plash" class="partner-logo" style="height:70px; width:auto; padding:8px 25px; object-fit:contain;">
-      
+
     </div>
   </div>
 </section>
@@ -1150,7 +1045,6 @@
         <a href="#services">Our Services</a>
         <a href="#projects">Our Projects</a>
         <a href="#gallery">Team</a>
-        <a href="Testimonials.html">Testimonials</a>
         <a href="followups.html">Follow Up</a>
         <a href="#contact">Contact</a>
       </div>
