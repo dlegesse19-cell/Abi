@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team | Soulasia International Ltd.</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="team.html" class="active">Team</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <a href="contact.html" class="nav-cta">Get a Quote</a>
+      <a href="followups.html" class="nav-cta-secondary">Follow Up</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobileMenu()">Home</a>
+    <a href="about.html" onclick="closeMobileMenu()">About</a>
+    <a href="services.html" onclick="closeMobileMenu()">Services</a>
+    <a href="projects.html" onclick="closeMobileMenu()">Projects</a>
+    <a href="team.html" onclick="closeMobileMenu()">Team</a>
+    <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+  </nav>
+</header>
+
+<div class="logo-bar">
+  <div class="wrap">
+    <img src="logo images/logo.png" alt="Soulasia International Ltd." class="site-logo-center">
+  </div>
+</div>
+
+<!-- ===== PHOTO GALLERY (Polaroid Style - Staff) ===== -->
+<section class="pad fade-in" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Behind the Scenes</span>
+      <h2>Meet the People Behind Soulasia</h2>
+      <p>From our sourcing agents in China to our logistics and client-support team in Addis Ababa, our staff work every day to make sure your projects are delivered right, on time, and with care.</p>
+    </div>
+
+    <div class="polaroid-gallery">
+      <div class="polaroid rot-1"><img src="staff-images/gallery-1.jpg" alt="Describe photo 1"><span class="cap">Caption 1</span></div>
+      <div class="polaroid rot-2"><img src="staff-images/gallery-2.jpg" alt="Describe photo 2"><span class="cap">Caption 2</span></div>
+      <div class="polaroid rot-3"><img src="staff-images/gallery-3.jpg" alt="Describe photo 3"><span class="cap">Caption 3</span></div>
+      <div class="polaroid rot-4"><img src="staff-images/gallery-4.jpg" alt="Describe photo 4"><span class="cap">Caption 4</span></div>
+      <div class="polaroid rot-5"><img src="staff-images/gallery-5.jpg" alt="Describe photo 5"><span class="cap">Caption 5</span></div>
+      <div class="polaroid rot-1"><img src="staff-images/gallery-6.jpg" alt="Describe photo 6"><span class="cap">Caption 6</span></div>
+      <div class="polaroid rot-2"><img src="staff-images/gallery-7.jpg" alt="Describe photo 7"><span class="cap">Caption 7</span></div>
+      <div class="polaroid rot-3"><img src="staff-images/gallery-8.jpg" alt="Describe photo 8"><span class="cap">Caption 8</span></div>
+      <div class="polaroid rot-4"><img src="staff-images/gallery-9.jpg" alt="Describe photo 9"><span class="cap">Caption 9</span></div>
+      <div class="polaroid rot-5"><img src="staff-images/gallery-10.jpg" alt="Describe photo 10"><span class="cap">Caption 10</span></div>
+      <div class="polaroid rot-1"><img src="staff-images/gallery-11.jpg" alt="Describe photo 11"><span class="cap">Caption 11</span></div>
+      <div class="polaroid rot-2"><img src="staff-images/gallery-12.jpg" alt="Describe photo 12"><span class="cap">Caption 12</span></div>
+      <div class="polaroid rot-3"><img src="staff-images/gallery-13.jpg" alt="Describe photo 13"><span class="cap">Caption 13</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>SOULASIA INTERNATIONAL LTD.</h4>
+        <p>Hong Kong Base | Offices in Foshan, Addis Ababa &amp; UAE</p>
+        <p style="margin-top:8px;">© 2026 Soulasia International Ltd. All Rights Reserved.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Our Services</a>
+        <a href="projects.html">Our Projects</a>
+        <a href="team.html">Team</a>
+        <a href="followups.html">Follow Up</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:Soulasia251@gmail.com">Soulasia251@gmail.com</a>
+        <a href="tel:+251911500019">📞 +251 91 150 0019</a>
+        <span>📍 Addis Ababa, Ethiopia | Foshan, China | UAE</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a href="https://wa.me/251911500019" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ===== SCROLL ANIMATION ===== -->
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('hamburgerBtn').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('hamburgerBtn').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  const faders = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  faders.forEach(el => observer.observe(el));
+
+  const counters = document.querySelectorAll('.count');
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || entry.target.dataset.done) return;
+      entry.target.dataset.done = 'true';
+      const target = parseInt(entry.target.dataset.target, 10);
+      const duration = 1400;
+      const startTime = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        entry.target.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.4 });
+  counters.forEach(el => counterObserver.observe(el));
+</script>
+
+</body>
+</html>
