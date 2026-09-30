@@ -88,7 +88,10 @@
       </div>
       <div class="contact-form-inner">
         <h3>Send us a message</h3>
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="2ae0ddb2-5d6a-4f20-b98a-0aa5d76e8047">
+          <input type="hidden" name="subject" value="New Inquiry from Soulasia Website">
+          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
           <div class="form-group">
             <label for="name">Your Name *</label>
             <input type="text" id="name" name="name" required placeholder="Full name">
